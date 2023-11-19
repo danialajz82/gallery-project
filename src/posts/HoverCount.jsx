@@ -1,18 +1,15 @@
 import React, { useState } from "react";
+import counter from "./Counter";
 
-const HoverCount = () => {
-  const [count, setCount] = useState(0);
-
-  const handelAddCount = () => {
-    setCount(count + 1);
-  };
+const HoverCount = (props) => {
+  const {count, handelAddCount} = props;
   return (
     <div className="text-center w-100">
       <button className="btn btn-info" onMouseEnter={handelAddCount}>
-        count: {count}
+        count:{count}
       </button>
     </div>
   );
 };
 
-export default HoverCount;
+export default counter(HoverCount);

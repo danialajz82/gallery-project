@@ -1,11 +1,9 @@
 import React, { useState } from "react";
+import counter from "./Counter";
 
-const ClickCount = () => {
-  const [count, setCount] = useState(0);
+const ClickCount = (props) => {
+  const {count, handelAddCount} = props;
 
-  const handelAddCount = () => {
-    setCount(count + 1);
-  };
   return (
     <div className="text-center w-100">
       <button className="btn btn-success" onClick={handelAddCount}>
@@ -15,4 +13,4 @@ const ClickCount = () => {
   );
 };
 
-export default ClickCount;
+export default counter(ClickCount);
