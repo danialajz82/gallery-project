@@ -36,17 +36,17 @@ const Users = () => {
           if (res.status == 200) {
 
             const newUsers = users.filter(u => u.id != itemId);
-            setUsers(newUsers)
+            setUsers(newUsers) 
 
             swal("حذف با موفقیت انجام شد!", {
               icon: "success",
               buttons: "متوجه شدم!",
             });
           } else {
-            swal("عملیات با خطا مواجه شد", {
+           { swal("عملیات با خطا مواجه شد", {
               icon: "error",
               buttons: "متوجه شدم!",
-            });
+            });}
           }
        });
       } else {

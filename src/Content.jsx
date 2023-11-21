@@ -5,9 +5,11 @@ import Gallery from "./gallery/Gallery";
 import Posts from "./posts/Posts";
 import style from "./style.module.css";
 import Todos from "./todos/Todos";
-import Users from './users/Users'; 
+import Users from "./users/Users";
 import AddUser from "./users/AddUser";
 import { faL } from "@fortawesome/free-solid-svg-icons";
+import WithAlert2 from "./HOC/WithAlert2";
+import { Alert } from "bootstrap";
 
 const Content = () => {
   const { showMenu, setShowMenu } = useContext(MainContext);
@@ -17,6 +19,10 @@ const Content = () => {
     event.stopPropagation();
     setShowMenu(!showMenu);
   };
+
+  const renderUser = (Confrim, Alert) => (
+    <Users Confrim={Confrim} Alert={Alert} />
+  );
 
   return (
     <div
@@ -35,7 +41,13 @@ const Content = () => {
           //   path="/"
           //   element={ <Navigate replace to="/posts" />}
           path="/user"
-          element={<Users/>}
+          element={
+            <WithAlert2
+              render={(Confrim, Alert) => (
+                <Users Confrim={Confrim} Alert={Alert} />
+              )}
+            />
+          }
         />
 
         <Route path="/user/add/" element={<AddUser />}>
@@ -45,7 +57,7 @@ const Content = () => {
         <Route path="/post" element={<Posts />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/todo" element={<Todos />} />
-        <Route path="*" element={<Users />} />
+        <Route path="*" element={<WithAlert2 render={renderUser} />} />
       </Routes>
       {/* </BrowserRouter> */}
     </div>
